@@ -1,5 +1,5 @@
 /**
- * reveal.js プラグイン：Keynote「ベーシックホワイト」のマスター（レイアウト）を再現する。
+ * reveal.js プラグイン：Keynote「ベーシックホワイト」風のマスター（レイアウト）を再現する。
  *
  * 二層構造（kengirie/slidev-theme-keynote-basic と同じ）
  * - 外側：.kbox = 絶対座標の枠（1920×1080、単位は Keynote の pt）
@@ -55,7 +55,7 @@ function parseJSON(text, what, section) {
     return JSON.parse(t)
   }
   catch (e) {
-    console.warn(`[keynote-basic] ${what} の JSON が読めません`, section, e)
+    console.warn(`[basic-white] ${what} の JSON が読めません`, section, e)
     return {}
   }
 }
@@ -177,7 +177,7 @@ export function applyLayout(section, options = {}) {
   const name = section.dataset.layout ?? options.defaultLayout ?? 'default'
   const layout = layouts[name]
   if (!layout) {
-    console.warn(`[keynote-basic] レイアウト "${name}" はありません`, section)
+    console.warn(`[basic-white] レイアウト "${name}" はありません`, section)
     return
   }
   const overrides = parseJSON(section.dataset.boxes, 'data-boxes', section)
@@ -350,13 +350,19 @@ export function fitSlide(section) {
 }
 
 /** reveal.js プラグイン */
-export default function KeynoteBasic() {
+/**
+ * reveal.js プラグイン。設定は Reveal.initialize() の basicWhite に書く。
+ *   defaultLayout   data-layout を書かないスライドのレイアウト（既定 'default'）
+ *   debug           true で枠の線を表示
+ *   overlayOpacity  data-overlay の画像の不透明度（既定 0.5）
+ */
+export default function BasicWhite() {
   return {
-    id: 'keynote-basic',
+    id: 'basic-white',
     async init(deck) {
-      const options = deck.getConfig().keynote ?? {}
+      const options = deck.getConfig().basicWhite ?? {}
       const root = deck.getRevealElement()
-      root.classList.add('k-keynote')
+      root.classList.add('k-basic-white')
       if (options.debug)
         root.classList.add('k-debug')
       const sections = [...deck.getSlidesElement().querySelectorAll('section')]

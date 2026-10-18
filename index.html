@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Keynote ベーシックホワイト for reveal.js</title>
+  <title>ベーシックホワイト for reveal.js</title>
   <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
   <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="theme/keynote-basic.css">
+  <link rel="stylesheet" href="theme/basic-white.css">
 </head>
 <body>
 <div class="reveal">
@@ -26,7 +26,7 @@
 
 <section data-layout="default">
   <h2 data-box="title">タイトルと箇条書き</h2>
-  <p data-box="subtitle">レイアウトは Keynote「ベーシックホワイト」と同じ</p>
+  <p data-box="subtitle">レイアウトは Keynote「ベーシックホワイト」に準拠</p>
   <ul>
     <li>枠の位置・文字サイズ・行間は Keynote の実測値</li>
     <li>入りきらない文章は Keynote と同じ倍率で自動的に縮小
@@ -133,9 +133,9 @@
 </div>
 </div>
 <script type="module">
-  import Reveal from './node_modules/reveal.js/dist/reveal.esm.js'
-  import Notes from './node_modules/reveal.js/plugin/notes/notes.esm.js'
-  import KeynoteBasic from './theme/keynote-basic.js'
+  import Reveal from './node_modules/reveal.js/dist/reveal.mjs'
+  import Notes from './node_modules/reveal.js/dist/plugin/notes.mjs'
+  import BasicWhite from './theme/basic-white.js'
 
   window.Reveal = Reveal
   Reveal.initialize({
@@ -146,11 +146,11 @@
     center: false,
     hash: true,
     transition: 'none',
-    keynote: {
+    basicWhite: {
       defaultLayout: 'default',
       debug: false,
     },
-    plugins: [Notes, KeynoteBasic],
+    plugins: [Notes, BasicWhite],
   })
 </script>
 </body>

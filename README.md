@@ -1,17 +1,57 @@
-# revealjs-keynote-basic
+# revealjs-theme-basic-white-ja
 
-Keynote「ベーシックホワイト」を**プレースホルダーの座標ごと**再現する reveal.js テンプレート。
-[kengirie/slidev-theme-keynote-basic](https://github.com/kengirie/slidev-theme-keynote-basic)（Slidev 版）を reveal.js に移植し、Keynote 14 で書き出した画像と突き合わせて、文字の位置が 1px 以内で一致するまで詰めた。
+Keynote の「ベーシックホワイト」風の reveal.js テーマ（日本語版）。マスターの**プレースホルダーの座標ごと**再現する。
+[kengirie/slidev-theme-keynote-basic](https://github.com/kengirie/slidev-theme-keynote-basic)（Slidev 版）を reveal.js に移植し、日本語の Keynote 14 で書き出した画像と突き合わせて調整した。macOS（ヒラギノ角ゴ）では、文字の位置が Keynote の書き出しと 1px 以内で一致する。
 
-## 使い方
+> Apple Inc. とは無関係の非公式テーマです。Keynote は Apple Inc. の商標です。
+
+## インストールして使う
+
+新しいスライドのフォルダで：
+
+```sh
+npm install reveal.js revealjs-theme-basic-white-ja
+```
+
+```html
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
+<link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+<link rel="stylesheet" href="node_modules/revealjs-theme-basic-white-ja/theme/basic-white.css">
+
+<div class="reveal">
+  <div class="slides">
+    <section data-layout="intro">
+      <h1 data-box="title">プレゼンテーションのタイトル</h1>
+      <p data-box="subtitle">サブタイトル</p>
+    </section>
+  </div>
+</div>
+
+<script type="module">
+  import Reveal from './node_modules/reveal.js/dist/reveal.mjs'
+  import BasicWhite from './node_modules/revealjs-theme-basic-white-ja/theme/basic-white.js'
+
+  Reveal.initialize({
+    width: 1920, height: 1080, margin: 0, center: false,   // Keynote と同じ 1920×1080（1pt = 1px）
+    plugins: [BasicWhite],
+  })
+</script>
+```
+
+reveal.js 6 と 5（5.2.1）で動作を確認している。5 を使う場合は `reveal.mjs` の代わりに `dist/reveal.esm.js` を読み込む。
+
+Vite などのバンドラーを使う場合は `import BasicWhite from 'revealjs-theme-basic-white-ja'` と `import 'revealjs-theme-basic-white-ja/basic-white.css'` で読み込める。
+
+ES モジュールを使うので、HTML を直接開かずにローカルサーバー経由で見る（例：`npx serve`）。
+
+## このリポジトリのサンプル
 
 ```sh
 npm install
 npm start            # http://localhost:8000/ を開く
 ```
 
-スライドは `index.html` に `<section>` を 1 枚ずつ並べて書く。
-ES モジュールを使うので、`index.html` を直接開かずにサーバー経由で見る（保存して再読み込みすれば反映される）。
+スライドは `index.html` に `<section>` を 1 枚ずつ並べて書く（保存して再読み込みすれば反映される）。
 
 ```html
 <section data-layout="default">
@@ -67,7 +107,7 @@ ES モジュールを使うので、`index.html` を直接開かずにサーバ�
 | 写真 | `image` | image |
 | 空白 | `blank` | — |
 
-枠の座標と書式は [theme/layouts.js](theme/layouts.js) と [theme/keynote-basic.css](theme/keynote-basic.css) にまとめてある。
+枠の座標と書式は [theme/layouts.js](theme/layouts.js) と [theme/basic-white.css](theme/basic-white.css) にまとめてある。
 
 ### 写真
 
@@ -97,12 +137,12 @@ Keynote のプレースホルダーに写真を入れたときと同じく、枠
 ```js
 Reveal.initialize({
   width: 1920, height: 1080, margin: 0, center: false,   // Keynote と同じ 1920×1080（1pt = 1px）
-  keynote: {
+  basicWhite: {
     defaultLayout: 'default',  // data-layout を書かないスライドのレイアウト
     debug: false,              // true で枠の線を表示
     overlayOpacity: 0.5,       // data-overlay の画像の不透明度
   },
-  plugins: [Notes, KeynoteBasic],  // Markdown を使う場合は KeynoteBasic を Markdown の後に置く
+  plugins: [Notes, BasicWhite],  // Markdown を使う場合は BasicWhite を Markdown の後に置く
 })
 ```
 
@@ -110,7 +150,7 @@ Reveal.initialize({
 
 PDF は reveal.js の通常の方法（`?print-pdf` を付けて開いて印刷）で書き出せる。
 
-## Keynote との一致度
+## Keynote との一致度（macOS・ヒラギノ角ゴ）
 
 Keynote 14 で同じ内容のスライドを AppleScript で作って PNG に書き出し、reveal.js（Chrome）の画面と画素単位で比べた。
 
@@ -162,7 +202,8 @@ npm run verify:autofit -- --keynote   # 113 ケースの Keynote 側も作り直
 
 ## 制限
 
-- ヒラギノ角ゴ ProN（macOS 標準）が前提。ほかの環境では別のフォントになり、一致しない
+- 日本語の Keynote で計測した日本語版。ヒラギノ角ゴ ProN（macOS・iOS 標準）が前提で、Windows や Android では別のフォントになり、折り返し位置や縮小の具合が Keynote とずれる
+- 英語環境の Keynote の Basic White（フォントが違う）は再現していない
 - 箇条書きの 2 段目以降のレベルは、マスターの値（インデント 48pt × レベル、記号・サイズ・段落前の間隔は同じ）で作っている。AppleScript では段落のレベルを設定できないため、Keynote との画素比較はしていない
 - Keynote のテーマに入っているサンプル写真の切り抜き位置は再現していない（自分の写真を入れた場合は一致する）
 - 文字のアンチエイリアスは描画エンジンの違いで完全には同じにならない

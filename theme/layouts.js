@@ -8,7 +8,7 @@
  *
  * BoxDef:
  *   x, y, w, h  枠の位置とサイズ
- *   role        テキストスタイル（.k-role-<role>。中身は keynote-basic.css）
+ *   role        テキストスタイル（.k-role-<role>。中身は basic-white.css）
  *   valign      top | middle | bottom（Keynote の垂直揃え）
  *   align       left | center | right
  *   kind        'image' なら写真の枠
@@ -26,10 +26,10 @@ const body = { x: 95, y: 334.528, w: 1730, h: 650.08, role: 'body', valign: 'top
 const half = { w: 770 }
 const sideImage = { x: 960, y: 100, w: 860, h: 880, kind: 'image' }
 
-/** keynote: Keynote 上のマスター名 / main: 区切りなしで書いた内容が入る枠 */
+/** master: Keynote 上のマスター名 / main: 区切りなしで書いた内容が入る枠 */
 export const layouts = {
   'intro': {
-    keynote: 'タイトル',
+    master: 'タイトル',
     main: 'title',
     boxes: {
       title: { x: 95, y: 202.755, w: 1730, h: 366, role: 'title-xl', valign: 'bottom' },
@@ -38,7 +38,7 @@ export const layouts = {
     },
   },
   'intro-image': {
-    keynote: 'タイトル&画像',
+    master: 'タイトル&画像',
     main: 'title',
     boxes: {
       image: { x: 0, y: 0, w: 1920, h: 1080, kind: 'image' },
@@ -48,7 +48,7 @@ export const layouts = {
     },
   },
   'intro-image-right': {
-    keynote: 'タイトル&画像（代替）',
+    master: 'タイトル&画像（代替）',
     main: 'title',
     boxes: {
       image: { x: 960, y: 100, w: 860, h: 880, kind: 'image' },
@@ -57,18 +57,18 @@ export const layouts = {
     },
   },
   'default': {
-    keynote: 'タイトル&箇条書き',
+    master: 'タイトル&箇条書き',
     main: 'body',
     boxes: { title, subtitle, body },
   },
   'bullets': {
-    keynote: '箇条書き',
+    master: '箇条書き',
     main: 'body',
     // このマスターだけ本文が 2 段組み（numCol=2, 段間 86.5pt）
     boxes: { body: { ...body, columns: 2, columnGap: 86.5 } },
   },
   'image-right': {
-    keynote: 'タイトル、箇条書き、画像',
+    master: 'タイトル、箇条書き、画像',
     main: 'body',
     boxes: {
       title: { ...title, ...half, h: 113 },
@@ -78,7 +78,7 @@ export const layouts = {
     },
   },
   'video-small': {
-    keynote: 'タイトル、箇条書き、ライブビデオ（小）',
+    master: 'タイトル、箇条書き、ライブビデオ（小）',
     main: 'body',
     boxes: {
       title: { ...title, ...half, h: 113 },
@@ -89,7 +89,7 @@ export const layouts = {
     },
   },
   'video-large': {
-    keynote: 'タイトル、箇条書き、ライブビデオ（大）',
+    master: 'タイトル、箇条書き、ライブビデオ（大）',
     main: 'body',
     boxes: {
       title: { ...title, ...half, h: 113 },
@@ -99,31 +99,31 @@ export const layouts = {
     },
   },
   'section': {
-    keynote: 'セクション',
+    master: 'セクション',
     main: 'title',
     boxes: {
       title: { x: 95, y: 357, w: 1730, h: 366, role: 'section', valign: 'middle' },
     },
   },
   'title-only': {
-    keynote: 'タイトルのみ',
+    master: 'タイトルのみ',
     main: 'title',
     boxes: { title: { ...title, h: 112.988 }, subtitle },
   },
   'agenda': {
-    keynote: '議題',
+    master: '議題',
     main: 'body',
     boxes: { title: { ...title, h: 113 }, subtitle, body: { ...body, role: 'agenda' } },
   },
   'statement': {
-    keynote: 'ステートメント',
+    master: 'ステートメント',
     main: 'title',
     boxes: {
       title: { x: 95, y: 387.468, w: 1730, h: 305.064, role: 'statement', valign: 'middle', align: 'center' },
     },
   },
   'fact': {
-    keynote: 'ビッグファクト',
+    master: 'ビッグファクト',
     main: 'title',
     boxes: {
       title: { x: 95, y: 84.719, w: 1730, h: 570.203, role: 'fact', valign: 'bottom', align: 'center' },
@@ -131,7 +131,7 @@ export const layouts = {
     },
   },
   'quote': {
-    keynote: '引用',
+    master: '引用',
     main: 'quote',
     boxes: {
       quote: { x: 138.104, y: 388.965, w: 1643.792, h: 302.069, role: 'quote', valign: 'top' },
@@ -139,7 +139,7 @@ export const layouts = {
     },
   },
   '3-images': {
-    keynote: '画像（3点）',
+    master: '画像（3点）',
     boxes: {
       left: { x: 95, y: 100, w: 1116, h: 885, kind: 'image' },
       topRight: { x: 1241, y: 100, w: 585, h: 426, kind: 'image' },
@@ -147,13 +147,13 @@ export const layouts = {
     },
   },
   'image': {
-    keynote: '写真',
+    master: '写真',
     boxes: {
       image: { x: 0, y: 0, w: 1920, h: 1080, kind: 'image' },
     },
   },
   'blank': {
-    keynote: '空白',
+    master: '空白',
     boxes: {},
   },
 }

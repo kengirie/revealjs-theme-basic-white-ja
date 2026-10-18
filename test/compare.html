@@ -10,7 +10,7 @@
   -->
   <link rel="stylesheet" href="../node_modules/reveal.js/dist/reset.css">
   <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="../theme/keynote-basic.css">
+  <link rel="stylesheet" href="../theme/basic-white.css">
 </head>
 <body>
 <div class="reveal">
@@ -209,9 +209,9 @@
 </div>
 </div>
 <script type="module">
-  import Reveal from '../node_modules/reveal.js/dist/reveal.esm.js'
-  import Markdown from '../node_modules/reveal.js/plugin/markdown/markdown.esm.js'
-  import KeynoteBasic from '../theme/keynote-basic.js'
+  import Reveal from '../node_modules/reveal.js/dist/reveal.mjs'
+  import Markdown from '../node_modules/reveal.js/dist/plugin/markdown.mjs'
+  import BasicWhite from '../theme/basic-white.js'
 
   if (new URLSearchParams(location.search).has('overlay')) {
     document.querySelectorAll('.slides > section').forEach((s, i) => {
@@ -226,7 +226,7 @@
     center: false,
     hash: true,
     transition: 'none',
-    plugins: [Markdown, KeynoteBasic],
+    plugins: [Markdown, BasicWhite],
   })
 </script>
 </body>
