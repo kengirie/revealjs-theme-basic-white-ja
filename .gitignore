@@ -8,3 +8,4 @@ keynote/autofit/reveal-off/
 test/_*.html
 # Keynote の書類（テーマのサンプル写真を含む）
 *.key
+scripts/_*.mjs
