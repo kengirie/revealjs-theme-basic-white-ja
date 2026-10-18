@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keynote ベーシックホワイト for reveal.js（Markdown 版）</title>
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="theme/keynote-basic.css">
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <!-- Markdown 版：スライドは slides.md に書く（--- で区切る。Note: 以降はスピーカーノート）。HTML で書く場合は index.html -->
+    <section data-markdown="slides.md" data-separator="^\r?\n---\r?\n$" data-separator-notes="^Note:"></section>
+  </div>
+</div>
+<script type="module">
+  import Reveal from './node_modules/reveal.js/dist/reveal.esm.js'
+  import Markdown from './node_modules/reveal.js/plugin/markdown/markdown.esm.js'
+  import Notes from './node_modules/reveal.js/plugin/notes/notes.esm.js'
+  import KeynoteBasic from './theme/keynote-basic.js'
+
+  window.Reveal = Reveal
+
+  Reveal.initialize({
+    // Keynote と同じ 1920×1080（1pt = 1px）
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    center: false,
+    hash: true,
+    transition: 'none',
+    keynote: {
+      // data-layout を書かないスライドのレイアウト
+      defaultLayout: 'default',
+      // true にすると枠の線を表示する
+      debug: false,
+    },
+    // KeynoteBasic は Markdown の後に置く（Markdown を HTML にしてから枠に振り分けるため）
+    plugins: [Markdown, Notes, KeynoteBasic],
+  })
+</script>
+</body>
+</html>

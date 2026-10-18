@@ -10,19 +10,134 @@
 </head>
 <body>
 <div class="reveal">
-  <div class="slides">
-    <!-- スライドは slides.md に Markdown で書く（--- で区切る。Note: 以降はスピーカーノート） -->
-    <section data-markdown="slides.md" data-separator="^\r?\n---\r?\n$" data-separator-notes="^Note:"></section>
+<div class="slides">
+<!--
+  スライドは <section> を 1 枚ずつ並べて書く（Markdown で書きたい場合は markdown.html + slides.md）。
+  - <section data-layout="..."> でレイアウト（Keynote のマスター）を選ぶ
+  - data-box="title" などで入れる枠を指定する。指定しない内容はメインの枠へ
+  - タグの種類（h1 / p / ul など）は見た目に影響しない。書式は枠で決まる
+-->
+
+<section data-layout="intro">
+  <h1 data-box="title">プレゼンテーションのタイトル</h1>
+  <p data-box="subtitle">プレゼンテーションのサブタイトル</p>
+  <p data-box="footer">作者と日付</p>
+</section>
+
+<section data-layout="default">
+  <h2 data-box="title">タイトルと箇条書き</h2>
+  <p data-box="subtitle">レイアウトは Keynote「ベーシックホワイト」と同じ</p>
+  <ul>
+    <li>枠の位置・文字サイズ・行間は Keynote の実測値</li>
+    <li>入りきらない文章は Keynote と同じ倍率で自動的に縮小
+      <ul><li>箇条書きは入れ子にもできる</li>
+        <li>箇条書きの階層は 2 段まで</li>
+      </ul>
+    </li>
+    <li>枠を指定しない内容はメインの枠（ここでは本文）に入る</li>
+  </ul>
+</section>
+
+<section data-layout="section">
+  <h1>セクションのタイトル</h1>
+</section>
+
+<section data-layout="title-only">
+  <h2 data-box="title">タイトルのみ</h2>
+  <p data-box="subtitle">図や表は data-box="free" に書くと、スライド全体を使って自由に置ける</p>
+  <div data-box="free">
+    <div style="position:absolute; left:95px; top:335px; width:1730px; height:600px; background:#f2f2f2; display:grid; place-items:center; font-size:36px; color:#8e8e93">自由に置く領域</div>
   </div>
+</section>
+
+<section data-layout="agenda">
+  <h2 data-box="title">議題</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul>
+    <li>はじめに</li>
+    <li>現状の課題</li>
+    <li>提案</li>
+    <li>まとめ</li>
+  </ul>
+</section>
+
+<section data-layout="bullets">
+  <ul>
+    <li>「箇条書き」レイアウトは本文が 2 段組み</li>
+    <li>1 段目を埋めてから 2 段目へ流れる</li>
+    <li>項目 3</li>
+    <li>項目 4</li>
+    <li>項目 5</li>
+    <li>項目 6</li>
+    <li>項目 7</li>
+    <li>項目 8</li>
+    <li>項目 9</li>
+  </ul>
+</section>
+
+<section data-layout="image-right" data-image="assets/photo-2.jpg">
+  <h2 data-box="title">タイトル、箇条書き、写真</h2>
+  <p data-box="subtitle">写真は枠いっぱいに中央でトリミング</p>
+  <ul>
+    <li><code>data-image</code> で写真を指定</li>
+    <li>3 枚のレイアウトは <code>data-images</code></li>
+  </ul>
+</section>
+
+<section data-layout="statement">
+  <p>ステートメント</p>
+</section>
+
+<section data-layout="fact">
+  <p>100%</p>
+  <p data-box="body">事実に関する情報</p>
+</section>
+
+<section data-layout="quote">
+  <blockquote>「注目すべき引用」</blockquote>
+  <p data-box="attribution">出典</p>
+</section>
+
+<section data-layout="intro-image" data-image="assets/photo-1.jpg">
+  <h1 data-box="title">タイトルと写真</h1>
+  <p data-box="subtitle">プレゼンテーションのサブタイトル</p>
+  <p data-box="footer">作者と日付</p>
+</section>
+
+<section data-layout="intro-image-right" data-image="assets/photo-2.jpg">
+  <h1 data-box="title">タイトルと写真（別）</h1>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+</section>
+
+<section data-layout="video-small">
+  <h2 data-box="title">ライブビデオ（小）</h2>
+  <p data-box="subtitle">data-box="video" に動画や iframe を入れる</p>
+  <ul><li>例では写真を入れている</li></ul>
+  <div data-box="video"><img src="assets/photo-3.jpg" alt=""></div>
+</section>
+
+<section data-layout="3-images" data-images='{"left": "assets/photo-1.jpg", "topRight": "assets/photo-3.jpg", "bottomRight": "assets/photo-2.jpg"}'></section>
+
+<section data-layout="image" data-image="assets/photo-3.jpg"></section>
+
+<section data-layout="default" data-boxes='{"title": {"x": 300}, "body": {"y": 420}, "note": {"x": 1300, "y": 900, "w": 525, "h": 85, "role": "footer"}}'>
+  <h2 data-box="title">枠を動かす・足す</h2>
+  <ul>
+    <li><code>data-boxes</code> で、動かした枠のプロパティだけ書く</li>
+    <li>名前がレイアウトに無い枠は新しく足される</li>
+  </ul>
+  <p data-box="note">追加した枠の中身</p>
+  <aside class="notes">スピーカーノートは通常の reveal.js と同じ書き方（S キーで表示）。</aside>
+</section>
+
+</div>
 </div>
 <script type="module">
   import Reveal from './node_modules/reveal.js/dist/reveal.esm.js'
-  import Markdown from './node_modules/reveal.js/plugin/markdown/markdown.esm.js'
   import Notes from './node_modules/reveal.js/plugin/notes/notes.esm.js'
   import KeynoteBasic from './theme/keynote-basic.js'
 
   window.Reveal = Reveal
-
   Reveal.initialize({
     // Keynote と同じ 1920×1080（1pt = 1px）
     width: 1920,
@@ -32,13 +147,10 @@
     hash: true,
     transition: 'none',
     keynote: {
-      // data-layout を書かないスライドのレイアウト
       defaultLayout: 'default',
-      // true にすると枠の線を表示する
       debug: false,
     },
-    // KeynoteBasic は Markdown の後に置く（Markdown を HTML にしてから枠に振り分けるため）
-    plugins: [Markdown, Notes, KeynoteBasic],
+    plugins: [Notes, KeynoteBasic],
   })
 </script>
 </body>

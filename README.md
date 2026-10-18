@@ -10,8 +10,31 @@ npm install
 npm start            # http://localhost:8000/ を開く
 ```
 
-スライドは `slides.md` に Markdown で書く（`---` で区切る。`Note:` 以降はスピーカーノート）。HTML で直接書く版は `slides.html`（http://localhost:8000/slides.html）。
-ES モジュールを使うので、`index.html` を直接開かずにサーバー経由で見る。
+スライドは `index.html` に `<section>` を 1 枚ずつ並べて書く。
+ES モジュールを使うので、`index.html` を直接開かずにサーバー経由で見る（保存して再読み込みすれば反映される）。
+
+```html
+<section data-layout="default">
+  <h2 data-box="title">スライドのタイトル</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul>
+    <li>箇条書き
+      <ul><li>入れ子</li></ul>
+    </li>
+  </ul>
+  <aside class="notes">スピーカーノート</aside>
+</section>
+```
+
+- `data-layout` でレイアウト（Keynote のマスター）を選ぶ。書かなければ `default`
+- `data-box="title"` などで、その要素を入れる枠を指定する
+- `data-box` の無い内容は、そのレイアウトのメインの枠（`default` なら body、`intro` なら title）に入る
+- `data-box="free"` の中身は枠に入らず、スライド全体を覆う層に置かれる（座標はスライドの px）
+- `h1` / `p` / `ul` などのタグの種類は見た目に影響しない。Keynote と同じく、書式は枠（の役割）で決まる
+
+### Markdown で書く場合
+
+`markdown.html`（http://localhost:8000/markdown.html）が `slides.md` を読み込む。`---` でスライドを区切り、`::title::` のような行で枠を切り替える（Slidev と同じ書き方）。`Note:` 以降はスピーカーノート。
 
 ```md
 <!-- .slide: data-layout="default" -->
@@ -19,30 +42,9 @@ ES モジュールを使うので、`index.html` を直接開かずにサーバ�
 ::title::
 スライドのタイトル
 
-::subtitle::
-スライドのサブタイトル
-
 ::body::
 - 箇条書き
-  - 入れ子
 ```
-
-- `<!-- .slide: data-layout="..." -->` でレイアウト（Keynote のマスター）を選ぶ。書かなければ `default`
-- `::title::` のような行で、続く内容を入れる枠を切り替える
-- 枠を指定しない内容は、そのレイアウトのメインの枠（`default` なら body、`intro` なら title）に入る
-- `::free::` に書いたものは枠に入らず、スライド全体を覆う層に置かれる（座標はスライドの px）
-
-HTML で書くこともできる。
-
-```html
-<section data-layout="default">
-  <h2 data-box="title">スライドのタイトル</h2>
-  <p data-box="subtitle">スライドのサブタイトル</p>
-  <ul><li>枠を指定しない内容はメインの枠へ</li></ul>
-</section>
-```
-
-`h1` / `p` / `ul` などのタグの種類は見た目に影響しない。Keynote と同じく、書式は枠（の役割）で決まる。
 
 ## レイアウト
 
@@ -69,26 +71,26 @@ HTML で書くこともできる。
 
 ### 写真
 
-```md
-<!-- .slide: data-layout="image-right" data-image="assets/photo.jpg" -->
-<!-- .slide: data-layout="3-images" data-images="left: 'a.jpg', topRight: 'b.jpg', bottomRight: 'c.jpg'" -->
+```html
+<section data-layout="image-right" data-image="assets/photo.jpg">…</section>
+<section data-layout="3-images" data-images='{"left": "a.jpg", "topRight": "b.jpg", "bottomRight": "c.jpg"}'></section>
 ```
 
 Keynote のプレースホルダーに写真を入れたときと同じく、枠いっぱいに中央でトリミングする。
-ライブビデオの枠には `::video::` で `<video>` や `<iframe>` を入れる。
+ライブビデオの枠には `<div data-box="video">` の中に `<video>` や `<iframe>` を入れる。
 
 ### 枠を動かす・足す
 
-```md
-<!-- .slide: data-layout="default" data-boxes="title: {x: 300}, body: {y: 420}, subtitle: {hide: true}, note: {x: 1300, y: 900, w: 525, h: 85, role: footer}" -->
-
-::note::
-追加した枠の中身
+```html
+<section data-layout="default" data-boxes='{"title": {"x": 300}, "body": {"y": 420}, "subtitle": {"hide": true}, "note": {"x": 1300, "y": 900, "w": 525, "h": 85, "role": "footer"}}'>
+  <h2 data-box="title">タイトル</h2>
+  <p data-box="note">追加した枠の中身</p>
+</section>
 ```
 
 - `data-boxes` には、変えたプロパティだけ書く（`x` `y` `w` `h` `role` `valign` `align` `inset` `columns` `columnGap` `autofit` `hide`）
 - レイアウトに無い名前の枠は新しく足される
-- 書き方は JSON か、キーの引用符を省いた形（Markdown のスライド属性の値にはダブルクォートを使えないため）
+- 書き方は JSON。Markdown のスライド属性（`<!-- .slide: ... -->`）ではダブルクォートを使えないので、キーの引用符を省いた形（`data-boxes="title: {x: 300}"`）も受け付ける
 
 ### 設定
 
@@ -100,7 +102,7 @@ Reveal.initialize({
     debug: false,              // true で枠の線を表示
     overlayOpacity: 0.5,       // data-overlay の画像の不透明度
   },
-  plugins: [Markdown, Notes, KeynoteBasic],  // KeynoteBasic は Markdown の後
+  plugins: [Notes, KeynoteBasic],  // Markdown を使う場合は KeynoteBasic を Markdown の後に置く
 })
 ```
 
