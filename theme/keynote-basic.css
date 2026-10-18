@@ -1,0 +1,222 @@
+/*
+ * reveal.js テーマ：Keynote「ベーシックホワイト」(1920×1080)
+ * reveal.js の dist/theme/*.css の代わりに読み込む（reset.css / reveal.css の後）。
+ *
+ * 数値は Keynote 14 の実測値（pt = px）。元：kengirie/slidev-theme-keynote-basic
+ *
+ * 行間のモデル（Keynote を実測して確認）
+ *   文字サイズ f のとき ascent = round(.88f)、descent = round(.12f)、leading = round(.5f)（ヒラギノ角ゴ ProN）
+ *   行送り = 間隔 n × (ascent + descent) + leading
+ * 整数への丸めは縮小後の文字サイズで行う（縮小すると行送りが比例より少し詰まるのはこのため）。
+ * 1 行目の上と最終行の下には行間を付けない（.kbox-flow の負のマージンで再現）。
+ */
+:root {
+  --k-font: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Hiragino Sans", sans-serif;
+  --k-leading: .5;
+  --k-text: #000;
+  --k-bg: #fff;
+  /* テキストのインセット（4pt。サブタイトル・フッター系の枠は layouts.js で上下 3.2pt・左右 3.6pt を指定） */
+  --k-inset: 4px;
+  /* 箇条書き（マスター：記号「•」123%、インデント 48pt、段落の前 45pt） */
+  --k-bullet: "•";
+  --k-bullet-indent: 48px;
+  --k-bullet-size: 1.23em;
+  --k-debug-border: 1px solid #c8c8c8;
+}
+
+/* ---------- reveal.js 全体 ---------- */
+.reveal-viewport {
+  background: var(--k-bg);
+}
+.reveal {
+  font-family: var(--k-font);
+  color: var(--k-text);
+  font-feature-settings: "palt" 0;
+  /* Keynote は約物（「」、。など）を詰めず、和文と欧文の間にも自動で間隔を入れない */
+  text-spacing-trim: space-all;
+  text-autospace: no-autospace;
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal .slides section.k-slide {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: normal;
+}
+.reveal ::selection { background: #b4d5fe; }
+.reveal a { color: inherit; text-decoration: underline; }
+.reveal .controls { color: #8e8e93; }
+.reveal .progress { color: #8e8e93; }
+
+/* ---------- 外側：絶対座標の枠 ---------- */
+.kbox {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: visible;
+  /* 縮小して合わせる（プラグインが --k-fit を 0.40〜1 の 1% 刻みで設定） */
+  --k-fs: calc(var(--k-size) * var(--k-fit, 1));
+  --k-asc: round(nearest, calc(var(--k-fs) * .88), 1px);
+  --k-desc: round(nearest, calc(var(--k-fs) * .12), 1px);
+  --k-lead: round(nearest, calc(var(--k-fs) * var(--k-leading)), 1px);
+  font-size: var(--k-fs);
+}
+:where(.kbox) {
+  --k-lines: 1;
+  --k-para-before: 0px;
+  --k-size: 48px;
+}
+.k-debug .kbox { outline: var(--k-debug-border); }
+.kbox-image {
+  overflow: hidden;
+  background: #e8e8e8;
+}
+.kbox-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+
+/* ---------- 内側：普通の HTML / Markdown が流れる ---------- */
+.kbox-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: var(--k-inset);
+  box-sizing: border-box;
+}
+.kbox-flow {
+  position: relative;
+  /* ブラウザはベースラインを整数ピクセルに切り捨てて描くので、半ピクセル下げて四捨五入にする
+     （Keynote は小数位置のまま描く。実測で上下のズレの平均が 0 に近づく） */
+  top: .5px;
+  min-width: 0;
+  letter-spacing: var(--k-tracking, 0);
+  --k-lh: calc(var(--k-lines) * (var(--k-asc) + var(--k-desc)) + var(--k-lead));
+  line-height: var(--k-lh);
+  /* CSS は行間を上下に半分ずつ配るので、1 行目の上・最終行の下の分を打ち消す */
+  margin-block: calc((var(--k-asc) + var(--k-desc) - var(--k-lh)) / 2);
+}
+/* 要素はボックスの文字設定をそのまま継承する（Keynote はボックス単位で書式が決まる） */
+.kbox-flow :where(h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, div) {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  text-shadow: none;
+  color: inherit;
+  display: block;
+}
+/* 太字：ヒラギノ角ゴ ProN は W3 と W6 だけなので、Keynote と同じく W6 になる */
+.kbox-flow strong, .kbox-flow b { font-weight: 600; }
+.kbox-flow em, .kbox-flow i { font-style: italic; }
+.kbox-flow img { max-width: 100%; margin: 0; }
+
+/* ---------- 箇条書き ---------- */
+.kbox-flow ul,
+.kbox-flow ol {
+  list-style: none;
+}
+.kbox-flow li {
+  position: relative;
+  /* インデントも縮小に比例する（Keynote の実測） */
+  padding-left: calc(var(--k-bullet-indent) * var(--k-fit, 1));
+}
+.kbox-flow li + li,
+.kbox-flow li > :where(ul, ol) > li:first-child {
+  margin-top: calc(var(--k-para-before) * var(--k-fit, 1));
+}
+.kbox-flow p + p,
+.kbox-flow p + :where(ul, ol),
+.kbox-flow :where(ul, ol) + p {
+  margin-top: calc(var(--k-para-before) * var(--k-fit, 1));
+}
+/* 記号は本文と同じ行の高さにする。Keynote は拡大した記号を文字の高さの中心に揃えて置くが、
+   CSS も行の中で文字の領域を中央に置くので、行の高さを揃えると同じ位置になる（実測で ±0.5px） */
+.kbox-flow ul > li::before {
+  content: var(--k-bullet);
+  position: absolute;
+  left: 0;
+  font-size: var(--k-bullet-size);
+  line-height: inherit;
+}
+.kbox-flow ol { counter-reset: k-ol; }
+.kbox-flow ol > li { counter-increment: k-ol; }
+.kbox-flow ol > li::before {
+  content: counter(k-ol) ".";
+  position: absolute;
+  left: 0;
+}
+/* 中央・右揃え：ブラウザは行末の文字の後ろにも字間を足すが Keynote は足さないので、その分ずらす */
+.k-align-center > .kbox-inner > .kbox-flow { left: calc(var(--k-tracking, 0em) / 2); }
+.k-align-right > .kbox-inner > .kbox-flow { left: var(--k-tracking, 0em); }
+/* 段組み：Keynote と同じく 1 段目を埋めてから 2 段目へ流す */
+.kbox-flow.kbox-columns {
+  column-fill: auto;
+  height: calc(100% + var(--k-lh) - var(--k-asc) - var(--k-desc));
+}
+/* 最小（40%）まで縮めても収まらない行は、Keynote と同じく表示しない（プラグインが --k-clip を設定） */
+.kbox-clipped > .kbox-inner {
+  clip-path: inset(0 -100vw calc(100% - var(--k-clip)) -100vw);
+}
+
+/* ---------- テキストスタイル（役割） ----------
+ * サイズ(pt)・ウェイト(W3=300 / W6=600)・間隔(行)・字間(pt/100 → em) */
+.k-role-title-xl    { --k-size: 116px; font-weight: 600; --k-lines: .8; --k-tracking: -.02em; }
+.k-role-title       { --k-size: 85px;  font-weight: 600; --k-lines: .8; --k-tracking: -.02em; }
+.k-role-subtitle    { --k-size: 55px;  font-weight: 600; --k-lines: 1; }
+.k-role-footer      { --k-size: 36px;  font-weight: 600; --k-lines: 1; }
+.k-role-body        { --k-size: 48px;  font-weight: 300; --k-lines: .9; --k-para-before: 45px; }
+.k-role-agenda      { --k-size: 55px;  font-weight: 300; --k-lines: 1; --k-para-before: 18px; --k-tracking: -.01em; --k-bullet: none; --k-bullet-indent: 0px; }
+.k-role-section     { --k-size: 116px; font-weight: 300; --k-lines: .8; --k-tracking: -.02em; }
+.k-role-statement   { --k-size: 116px; font-weight: 300; --k-lines: .8; --k-tracking: -.02em; }
+.k-role-fact        { --k-size: 250px; font-weight: 600; --k-lines: .8; --k-tracking: -.01em; }
+.k-role-fact-info   { --k-size: 55px;  font-weight: 600; --k-lines: 1; }
+.k-role-quote       { --k-size: 85px;  font-weight: 300; --k-lines: .9; --k-tracking: -.02em; }
+/* 引用は「 を左に出すぶら下げインデント（左 50.3pt、1 行目 -37pt） */
+.k-role-quote .kbox-flow { padding-left: calc(50.3px * var(--k-fit, 1)); text-indent: calc(-37px * var(--k-fit, 1)); }
+.k-role-attribution { --k-size: 36px;  font-weight: 600; --k-lines: 1; }
+
+/* 写真・動画などを枠いっぱいに入れる役割（ライブビデオの枠） */
+.k-role-media { --k-inset: 0px; }
+.k-role-media .kbox-flow { margin: 0; top: 0; }
+.k-role-media .kbox-flow,
+.k-role-media .kbox-flow > * { width: 100%; height: 100%; }
+.k-role-media :where(img, video, iframe) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+}
+
+/* ---------- 枠に入らないもの・校正用オーバーレイ ---------- */
+.k-free {
+  position: absolute;
+  inset: 0;
+}
+.k-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  pointer-events: none;
+  z-index: 100;
+}

@@ -1,0 +1,51 @@
+1 | HiraKakuProN-W6 | 36.0 | 000 | 作者と日付
+1 | HiraKakuProN-W6 | 116.0 | 000 | プレゼンテーションのタイトル
+1 | HiraKakuProN-W6 | 55.0 | 000 | プレゼンテーションのサブタイトル
+2 | HiraKakuProN-W6 | 116.0 | 000 | プレゼンテーションのタイトル
+2 | HiraKakuProN-W6 | 36.0 | 000 | 作者と日付
+2 | HiraKakuProN-W6 | 55.0 | 000 | プレゼンテーションのサブタイトル
+3 | HiraKakuProN-W6 | 85.0 | 000 | スライドのタイトル
+3 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+4 | HiraKakuProN-W6 | 85.0 | 000 | スライドのタイトル
+4 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+4 | HiraKakuProN-W3 | 48.0 | 000 | スライドの箇条書きテキスト
+5 | HiraKakuProN-W3 | 48.0 | 000 | スライドの箇条書きテキスト
+6 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+6 | HiraKakuProN-W3 | 48.0 | 000 | スライドの箇条書きテキスト
+6 | HiraKakuProN-W6 | 85.0 | 000 | スライドのタイトル
+7 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+7 | HiraKakuProN-W3 | 48.0 | 000 | スライドの箇条書きテキスト
+7 | HiraKakuProN-W6 | 85.0 | 000 | スライドのタイトル
+8 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+8 | HiraKakuProN-W3 | 48.0 | 000 | スライドの箇条書きテキスト
+8 | HiraKakuProN-W6 | 85.0 | 000 | スライドのタイトル
+9 | HiraKakuProN-W3 | 116.0 | 000 | セクションのタイトル
+10 | HiraKakuProN-W6 | 85.0 | 000 | スライドのタイトル
+10 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+11 | HiraKakuProN-W6 | 85.0 | 000 | 議題
+11 | HiraKakuProN-W6 | 55.0 | 000 | スライドのサブタイトル
+11 | HiraKakuProN-W3 | 55.0 | 000 | はじめに
+現状の課題
+提案
+まとめ
+12 | HiraKakuProN-W3 | 116.0 | 000 | ステートメント
+13 | HiraKakuProN-W6 | 250.0 | 000 | 100%
+13 | HiraKakuProN-W6 | 55.0 | 000 | 事実に関する情報
+14 | HiraKakuProN-W6 | 36.0 | 000 | 出典
+14 | HiraKakuProN-W3 | 85.0 | 000 | 「注目すべき引用」
+16 | HiraKakuProN-W6 | 85.0 | 000 | 動かしたスライド
+16 | HiraKakuProN-W6 | 55.0 | 000 | 
+16 | HiraKakuProN-W3 | 48.0 | 000 | 一つ目の項目
+二つ目の項目はとても長いので、ボックスの幅を超えて次の行へ折り返されるはずです
+三つ目
+17 | HiraKakuProN-W6 | 36.0 | 000 | 
+17 | HiraKakuProN-W6 | 116.0 | 000 | とても長いプレゼンテーションのタイトルが二行に折り返される場合
+17 | HiraKakuProN-W6 | 55.0 | 000 | 
+18 | HiraKakuProN-W6 | 85.0 | 000 | あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん
+18 | HiraKakuProN-W6 | 55.0 | 000 | あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよ
+19 | HiraKakuProN-W6 | 85.0 | 000 | Keynote と reveal.js
+19 | HiraKakuProN-W6 | 55.0 | 000 | Basic White 1920×1080
+19 | HiraKakuProN-W3 | 48.0 | 000 | The quick brown fox jumps over the lazy dog
+数字 0123456789 と記号 (A/B) – 50%
+日本語と English が混ざった行
+

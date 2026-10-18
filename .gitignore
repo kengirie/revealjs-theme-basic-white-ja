@@ -1,0 +1,10 @@
+node_modules/
+out/
+# 検証で生成されるもの（npm run verify / verify:autofit）
+keynote/reveal-out/
+keynote/diff/
+keynote/autofit/reveal/
+keynote/autofit/reveal-off/
+test/_*.html
+# Keynote の書類（テーマのサンプル写真を含む）
+*.key

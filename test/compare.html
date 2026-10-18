@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Keynote 比較</title>
+  <!--
+    Keynote の基準画像（keynote/png、scripts/build-reference.applescript で生成）と同じ内容のデッキ。
+    写真・ライブビデオの枠は Keynote 側で削除しているので、こちらも入れない。
+    ?overlay を付けると Keynote の画像を半透明で重ねて表示する。
+  -->
+  <link rel="stylesheet" href="../node_modules/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../theme/keynote-basic.css">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1 -->
+<section data-layout="intro">
+  <h1 data-box="title">プレゼンテーションのタイトル</h1>
+  <p data-box="subtitle">プレゼンテーションのサブタイトル</p>
+  <p data-box="footer">作者と日付</p>
+</section>
+
+<!-- 2 -->
+<section data-layout="intro-image">
+  <h1 data-box="title">プレゼンテーションのタイトル</h1>
+  <p data-box="subtitle">プレゼンテーションのサブタイトル</p>
+  <p data-box="footer">作者と日付</p>
+</section>
+
+<!-- 3 -->
+<section data-layout="intro-image-right">
+  <h1 data-box="title">スライドのタイトル</h1>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+</section>
+
+<!-- 4: Markdown -->
+<section data-markdown data-layout="default">
+  <textarea data-template>
+::title::
+スライドのタイトル
+
+::subtitle::
+スライドのサブタイトル
+
+::body::
+- スライドの箇条書きテキスト
+  </textarea>
+</section>
+
+<!-- 5 -->
+<section data-layout="bullets">
+  <ul><li>スライドの箇条書きテキスト</li></ul>
+</section>
+
+<!-- 6 -->
+<section data-layout="image-right">
+  <h2 data-box="title">スライドのタイトル</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul><li>スライドの箇条書きテキスト</li></ul>
+</section>
+
+<!-- 7 -->
+<section data-layout="video-small">
+  <h2 data-box="title">スライドのタイトル</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul><li>スライドの箇条書きテキスト</li></ul>
+</section>
+
+<!-- 8 -->
+<section data-layout="video-large">
+  <h2 data-box="title">スライドのタイトル</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul><li>スライドの箇条書きテキスト</li></ul>
+</section>
+
+<!-- 9 -->
+<section data-layout="section">
+  <h1>セクションのタイトル</h1>
+</section>
+
+<!-- 10 -->
+<section data-layout="title-only">
+  <h2 data-box="title">スライドのタイトル</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+</section>
+
+<!-- 11 -->
+<section data-layout="agenda">
+  <h2 data-box="title">議題</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul>
+    <li>はじめに</li>
+    <li>現状の課題</li>
+    <li>提案</li>
+    <li>まとめ</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section data-layout="statement">
+  <p>ステートメント</p>
+</section>
+
+<!-- 13 -->
+<section data-layout="fact">
+  <p>100%</p>
+  <p data-box="body">事実に関する情報</p>
+</section>
+
+<!-- 14 -->
+<section data-layout="quote">
+  <blockquote>「注目すべき引用」</blockquote>
+  <p data-box="attribution">出典</p>
+</section>
+
+<!-- 15 -->
+<section data-layout="blank"></section>
+
+<!-- 16: Markdown、枠を動かす・複数段落・折り返し -->
+<section data-markdown data-layout="default" data-boxes="title: {x: 300}, body: {y: 420}">
+  <textarea data-template>
+::title::
+動かしたスライド
+
+::body::
+- 一つ目の項目
+- 二つ目の項目はとても長いので、ボックスの幅を超えて次の行へ折り返されるはずです
+- 三つ目
+  </textarea>
+</section>
+
+<!-- 17: 2 行に折り返すタイトル -->
+<section data-layout="intro">
+  とても長いプレゼンテーションのタイトルが二行に折り返される場合
+</section>
+
+<!-- 18: 縮小して合わせる -->
+<section data-layout="title-only">
+  <h2 data-box="title">あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん</h2>
+  <p data-box="subtitle">あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん</p>
+</section>
+
+<!-- 19: 欧文混じり -->
+<section data-layout="default">
+  <h2 data-box="title">Keynote と reveal.js</h2>
+  <p data-box="subtitle">Basic White 1920×1080</p>
+  <ul>
+    <li>The quick brown fox jumps over the lazy dog</li>
+    <li>数字 0123456789 と記号 (A/B) – 50%</li>
+    <li>日本語と English が混ざった行</li>
+  </ul>
+</section>
+
+<!-- 20: 2 段組み（1 段目を埋めてから 2 段目へ） -->
+<section data-layout="bullets">
+  <ul>
+    <li>項目 1 の箇条書きテキスト</li>
+    <li>項目 2 の箇条書きテキスト</li>
+    <li>項目 3 の箇条書きテキスト</li>
+    <li>項目 4 の箇条書きテキスト</li>
+    <li>項目 5 の箇条書きテキスト</li>
+    <li>項目 6 の箇条書きテキスト</li>
+    <li>項目 7 の箇条書きテキスト</li>
+    <li>項目 8 の箇条書きテキスト</li>
+    <li>項目 9 の箇条書きテキスト</li>
+  </ul>
+</section>
+
+<!-- 21: 2 段組みで縮小 -->
+<section data-layout="bullets">
+  <ul><li>あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん</li></ul>
+</section>
+
+<!-- 22〜26: 写真（test/media）。Keynote と同じく枠いっぱいに中央でトリミング -->
+<section data-layout="intro-image" data-image="media/landscape.jpg">
+  <h1 data-box="title">プレゼンテーションのタイトル</h1>
+  <p data-box="subtitle">プレゼンテーションのサブタイトル</p>
+  <p data-box="footer">作者と日付</p>
+</section>
+
+<section data-layout="intro-image-right" data-image="media/portrait.jpg">
+  <h1 data-box="title">スライドのタイトル</h1>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+</section>
+
+<section data-layout="image-right" data-image="media/landscape.jpg">
+  <h2 data-box="title">スライドのタイトル</h2>
+  <p data-box="subtitle">スライドのサブタイトル</p>
+  <ul><li>スライドの箇条書きテキスト</li></ul>
+</section>
+
+<section data-layout="3-images" data-images="left: 'media/portrait.jpg', topRight: 'media/landscape.jpg', bottomRight: 'media/portrait.jpg'"></section>
+
+<section data-layout="image" data-image="media/portrait.jpg"></section>
+
+<!-- 27: 約物（Keynote は「」、。を詰めない） -->
+<section data-layout="default">
+  <h2 data-box="title">「見出し」、（括弧）。</h2>
+  <ul>
+    <li>「カギ括弧」、句読点。（括弧）「連続」『二重』</li>
+    <li>（行頭の括弧）と、読点「」の連続。</li>
+    <li>Keynoteとreveal.jsの間隔、ABCあいう123</li>
+  </ul>
+</section>
+
+</div>
+</div>
+<script type="module">
+  import Reveal from '../node_modules/reveal.js/dist/reveal.esm.js'
+  import Markdown from '../node_modules/reveal.js/plugin/markdown/markdown.esm.js'
+  import KeynoteBasic from '../theme/keynote-basic.js'
+
+  if (new URLSearchParams(location.search).has('overlay')) {
+    document.querySelectorAll('.slides > section').forEach((s, i) => {
+      s.dataset.overlay = `../keynote/png/png.${String(i + 1).padStart(3, '0')}.png`
+    })
+  }
+  window.Reveal = Reveal
+  Reveal.initialize({
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    center: false,
+    hash: true,
+    transition: 'none',
+    plugins: [Markdown, KeynoteBasic],
+  })
+</script>
+</body>
+</html>

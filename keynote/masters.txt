@@ -1,0 +1,60 @@
+## doc 1920x1080
+## 1 タイトル
+  #1 shape pos=95,934 size=1730x50
+  #2 shape pos=95,203 size=1730x366
+  #3 shape pos=95,569 size=1730x150
+## 2 タイトル&画像
+  #1 image pos=0,0 size=1920x1080
+  #2 shape pos=95,561 size=1730x366
+  #3 shape pos=95,87 size=1730x50
+  #4 shape pos=95,914 size=1730x88
+## 3 タイトル&画像（代替）
+  #1 image pos=960,100 size=860x880
+  #2 shape pos=95,100 size=770x463
+  #3 shape pos=95,556 size=770x424
+## 4 タイトル&箇条書き
+  #1 shape pos=95,85 size=1730x113
+  #2 shape pos=95,187 size=1730x74
+  #3 shape pos=95,335 size=1730x650
+## 5 箇条書き
+  #1 shape pos=95,335 size=1730x650
+## 6 タイトル、箇条書き、画像
+  #1 shape pos=95,187 size=770x74
+  #2 shape pos=95,335 size=770x650
+  #3 image pos=960,100 size=860x881
+  #4 shape pos=95,85 size=770x113
+## 7 タイトル、箇条書き、ライブビデオ（小）
+  #1 shape pos=95,187 size=770x74
+  #2 shape pos=95,335 size=770x650
+  #3 shape pos=95,85 size=770x113
+  #4 iWork item pos=1321,481 size=500x500
+## 8 タイトル、箇条書き、ライブビデオ（大）
+  #1 shape pos=95,187 size=770x74
+  #2 shape pos=95,335 size=770x650
+  #3 shape pos=95,85 size=770x113
+  #4 iWork item pos=960,100 size=860x881
+## 9 セクション
+  #1 shape pos=95,357 size=1730x366
+## 10 タイトルのみ
+  #1 shape pos=95,85 size=1730x113
+  #2 shape pos=95,187 size=1730x74
+## 11 議題
+  #1 shape pos=95,85 size=1730x113
+  #2 shape pos=95,187 size=1730x74
+  #3 shape pos=95,335 size=1730x650
+## 12 ステートメント
+  #1 shape pos=95,387 size=1730x305
+## 13 ビッグファクト
+  #1 shape pos=95,85 size=1730x570
+  #2 shape pos=95,651 size=1730x74
+## 14 引用
+  #1 shape pos=191,841 size=1591x50
+  #2 shape pos=138,389 size=1644x302
+## 15 画像（3点）
+  #1 image pos=1241,100 size=585x426
+  #2 image pos=1241,559 size=585x426
+  #3 image pos=95,100 size=1116x885
+## 16 写真
+  #1 image pos=0,0 size=1920x1080
+## 17 空白
+

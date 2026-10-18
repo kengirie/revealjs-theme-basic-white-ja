@@ -1,0 +1,21 @@
+{
+  "name": "revealjs-keynote-basic",
+  "version": "0.1.0",
+  "description": "Keynote「ベーシックホワイト」をプレースホルダー座標ごと再現する reveal.js テンプレート",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "reference": "osascript scripts/build-reference.applescript \"$PWD/keynote/png\" \"$PWD/test/media\"",
+    "verify": "node scripts/screenshot.mjs test/compare.html keynote/reveal-out && python3 scripts/compare.py keynote/png keynote/reveal-out keynote/diff",
+    "verify:autofit": "sh scripts/verify-autofit.sh",
+    "screenshot": "node scripts/screenshot.mjs index.html out"
+  },
+  "dependencies": {
+    "reveal.js": "^5.1.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  }
+}
